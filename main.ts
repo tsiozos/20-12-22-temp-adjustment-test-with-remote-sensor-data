@@ -25,13 +25,15 @@ control.setInterval(function onSet_interval_interval() {
     sensorDataCount = (sensorDataCount + 1) % 5
 }, 5000, control.IntervalMode.Interval)
 radio.onReceivedValue(function on_received_value(name: string, value: number) {
+    let stationID: number;
     
     if (showTemp) {
         // show the temperature on receivers display
         if (name == "temp") {
             value = value / 100
             basic.showNumber(value)
-            console.log("" + radio.receivedPacket(RadioPacketProperty.Time / 1000) + ": " + ("" + value))
+            stationID = radio.receivedPacket(RadioPacketProperty.SerialNumber)
+            console.log("" + stationID + ": " + ("" + radio.receivedPacket(RadioPacketProperty.Time / 1000)) + ": " + ("" + value))
             basic.pause(1000)
             basic.clearScreen()
         }

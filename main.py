@@ -30,7 +30,8 @@ def on_received_value(name, value):
         if name=="temp":
             value = value / 100
             basic.show_number(value)
-            print(str(radio.received_packet(RadioPacketProperty.TIME/1000))+": "+str(value))
+            stationID = radio.received_packet(RadioPacketProperty.SERIAL_NUMBER)
+            print(str(stationID)+": "+str(radio.received_packet(RadioPacketProperty.TIME/1000))+": "+str(value))
             basic.pause(1000)
             basic.clear_screen()
 radio.on_received_value(on_received_value)
