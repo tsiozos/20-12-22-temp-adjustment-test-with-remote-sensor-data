@@ -1,5 +1,6 @@
 radio.set_group(99)
 radio.set_transmit_power(7)
+radio.set_transmit_serial_number(True)
 showTemp = False
 transmitTemp = False
 sensorDataCount = 0

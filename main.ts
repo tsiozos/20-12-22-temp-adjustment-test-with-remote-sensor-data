@@ -1,5 +1,6 @@
 radio.setGroup(99)
 radio.setTransmitPower(7)
+radio.setTransmitSerialNumber(true)
 let showTemp = false
 let transmitTemp = false
 let sensorDataCount = 0
