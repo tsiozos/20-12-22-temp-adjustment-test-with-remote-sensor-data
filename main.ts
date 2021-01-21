@@ -6,6 +6,7 @@ let transmitTemp = false
 let sensorDataCount = 0
 let lastTemp = input.temperature()
 control.setInterval(function onSet_interval_interval() {
+    // average 5 last temp measurements
     
     if (sensorDataCount == 0) {
         lastTemp = input.temperature() / 5
@@ -29,7 +30,7 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
     let stationID: number;
     
     if (showTemp) {
-        // show the temperature on receivers display
+        // show the temperature on the display
         if (name == "temp") {
             value = value / 100
             basic.showNumber(value)
@@ -43,6 +44,7 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
     
 })
 input.onButtonPressed(Button.A, function on_button_pressed_a() {
+    // show the temperature on the display
     
     showTemp = !showTemp
     if (showTemp) {
@@ -55,6 +57,7 @@ input.onButtonPressed(Button.A, function on_button_pressed_a() {
     basic.clearScreen()
 })
 input.onButtonPressed(Button.B, function on_button_pressed_b() {
+    // transmit the temperature
     
     transmitTemp = !transmitTemp
     if (transmitTemp) {

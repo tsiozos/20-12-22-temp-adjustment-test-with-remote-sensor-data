@@ -6,7 +6,7 @@ transmitTemp = False
 sensorDataCount = 0
 lastTemp = input.temperature()
 
-def onSet_interval_interval():
+def onSet_interval_interval(): #average 5 last temp measurements
     global sensorDataCount, transmitTemp, lastTemp
     if sensorDataCount == 0:
         lastTemp = input.temperature()/5
@@ -27,7 +27,7 @@ control.set_interval(onSet_interval_interval, 5000, control.IntervalMode.INTERVA
 
 def on_received_value(name, value):
     global showTemp
-    if showTemp:        #show the temperature on receivers display
+    if showTemp:        #show the temperature on the display
         if name=="temp":
             value = value / 100
             basic.show_number(value)
@@ -37,7 +37,7 @@ def on_received_value(name, value):
             basic.clear_screen()
 radio.on_received_value(on_received_value)
 
-def on_button_pressed_a():
+def on_button_pressed_a(): #show the temperature on the display
     global showTemp
     showTemp = not showTemp
     if showTemp:
@@ -47,7 +47,7 @@ def on_button_pressed_a():
     basic.pause(1000)
     basic.clear_screen()
 
-def on_button_pressed_b():
+def on_button_pressed_b(): #transmit the temperature
     global transmitTemp
     transmitTemp = not transmitTemp
     if transmitTemp:
